@@ -100,7 +100,7 @@ const Buku = () => {
             <input
               type="text"
               placeholder="Cari buku..."
-              className="p-2 border border-gray-300 rounded"
+              className="p-2 border bg-white text-black border-gray-300 rounded"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

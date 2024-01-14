@@ -47,33 +47,33 @@ const DetailAnggota = ({ npm, onClose }) => {
     return null; //
   }
 
-  const riwayatPeminjamanRows = detailAnggota.riwayatPeminjaman?.map(
-    (peminjaman) =>
+  const riwayatPeminjamanRows = detailAnggota.riwayatPeminjaman?.length > 0 ? (
+    detailAnggota.riwayatPeminjaman.map((peminjaman) =>
       peminjaman.Detail && peminjaman.Detail.length > 0 ? (
         peminjaman.Detail.map((detail, index) => (
           <tr key={`${peminjaman.id_peminjaman}-${index}`}>
             {index === 0 ? (
               <>
-                <td rowSpan={peminjaman.Detail.length}>
+                <td rowSpan={peminjaman.Detail.length} className="px-2">
                   {peminjaman.id_peminjaman}
                 </td>
               </>
             ) : null}
-            <td>{detail.isbn || "N/A"}</td>
-            <td>{detail.Buku?.judul || "N/A"}</td>
-            <td>{detail.Buku?.kategori || "N/A"}</td>
+            <td className="px-2">{detail.isbn || "N/A"}</td>
+            <td className="px-2">{detail.Buku?.judul || "N/A"}</td>
+            <td className="px-2">{detail.Buku?.kategori || "N/A"}</td>
             {index === 0 ? (
               <>
-                <td rowSpan={peminjaman.Detail.length}>
+                <td rowSpan={peminjaman.Detail.length} className="px-2">
                   {peminjaman.tanggalPeminjaman}
                 </td>
-                <td rowSpan={peminjaman.Detail.length}>{peminjaman.status}</td>
+                <td rowSpan={peminjaman.Detail.length} className="px-2">{peminjaman.status}</td>
               </>
             ) : null}
           </tr>
         ))
       ) : (
-        <tr>
+        <tr key={peminjaman.id_peminjaman}>
           <td>{peminjaman.id_peminjaman}</td>
           <td>{"N/A"}</td>
           <td>{"N/A"}</td>
@@ -82,7 +82,14 @@ const DetailAnggota = ({ npm, onClose }) => {
           <td>{peminjaman.status}</td>
         </tr>
       )
+    )
+  ) : (
+    // Kasus jika tidak ada riwayat peminjaman
+    <tr>
+      <td colSpan={6} className="text-center">Tidak ada Riwayat Peminjaman</td>
+    </tr>
   );
+  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -196,21 +203,33 @@ const DetailAnggota = ({ npm, onClose }) => {
           </h3>
           {detailAnggota.riwayatPeminjaman &&
           detailAnggota.riwayatPeminjaman.length > 0 ? (
-            <table className="w-full mt-3 text-sm text-black border border-solid border-black">
+            <table className="w-full h-full mt-3 text-sm text-black border border-solid border-black">
               <thead className="bg-gray-200">
                 <tr>
-                  <th>ID Peminjaman</th>
-                  <th>ISBN</th>
-                  <th>Judul</th>
-                  <th>Kategori</th>
-                  <th>Tanggal Peminjaman</th>
-                  <th>Status</th>
+                  <th className="px-2">ID Peminjaman</th>
+                  <th className="px-2">ISBN</th>
+                  <th className="px-2">Judul</th>
+                  <th className="px-2">Kategori</th>
+                  <th className="px-2">Tanggal Peminjaman</th>
+                  <th className="px-2">Status</th>
                 </tr>
               </thead>
               <tbody>{riwayatPeminjamanRows}</tbody>
             </table>
           ) : (
-            <p className="text-black mt-3">Belum ada riwayat peminjaman.</p>
+            <table className="w-full h-full mt-3 text-sm text-black border border-solid border-black">
+              <thead className="bg-gray-200">
+                <tr>
+                  <th className="px-2">ID Peminjaman</th>
+                  <th className="px-2">ISBN</th>
+                  <th className="px-2">Judul</th>
+                  <th className="px-2">Kategori</th>
+                  <th className="px-2">Tanggal Peminjaman</th>
+                  <th className="px-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>{riwayatPeminjamanRows}</tbody>
+            </table>
           )}
         </div>
       </div>

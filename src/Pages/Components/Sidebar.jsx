@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom"; // Tambahkan useLocation dari react-router-dom
 import {
   FaBook,
   FaDatabase,
@@ -11,6 +11,14 @@ import {
 } from "react-icons/fa";
 
 const Sidebar = () => {
+  const location = useLocation(); // Gunakan useLocation untuk mendapatkan path saat ini
+  const [selectedMenu, setSelectedMenu] = useState("");
+
+  // Tambahkan useEffect untuk memperbarui selectedMenu saat path berubah
+  React.useEffect(() => {
+    setSelectedMenu(location.pathname);
+  }, [location.pathname]);
+
   return (
     <div>
       <aside
@@ -23,7 +31,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/dashboard"
-                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group"
+                className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group ${
+                  selectedMenu === "/dashboard" && "bg-[#6DB9EF]"
+                }`}
               >
                 <FaChartPie />
                 <span className="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
@@ -32,7 +42,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/anggota"
-                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group"
+                className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group ${
+                  selectedMenu === "/anggota" && "bg-[#6DB9EF]"
+                }`}
               >
                 <FaUserFriends />
                 <span className="flex-1 ms-3 whitespace-nowrap">Anggota</span>
@@ -41,7 +53,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/buku"
-                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group"
+                className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group ${
+                  selectedMenu === "/buku" && "bg-[#6DB9EF]"
+                }`}
               >
                 <FaBook />
                 <span className="flex-1 ms-3 whitespace-nowrap">Buku</span>
@@ -50,7 +64,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/peminjaman"
-                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group"
+                className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group ${
+                  selectedMenu === "/peminjaman" && "bg-[#6DB9EF]"
+                }`}
               >
                 <FaDatabase />
                 <span className="flex-1 ms-3 whitespace-nowrap">
@@ -61,7 +77,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/pengembalian"
-                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group"
+                className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group ${
+                  selectedMenu === "/pengembalian" && "bg-[#6DB9EF]"
+                }`}
               >
                 <FaTasks />
                 <span className="flex-1 ms-3 whitespace-nowrap">
@@ -72,7 +90,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/user"
-                className="flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group"
+                className={`flex items-center p-2 rounded-lg dark:text-white hover:bg-gray-100 group ${
+                  selectedMenu === "/user" && "bg-[#6DB9EF]"
+                }`}
               >
                 <FaUser />
                 <span className="flex-1 ms-3 whitespace-nowrap">User</span>
