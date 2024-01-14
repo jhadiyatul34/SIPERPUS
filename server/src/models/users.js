@@ -11,12 +11,6 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      filename: {
-        type: DataTypes.STRING,
-      },
-      filedata: {
-        type: DataTypes.BLOB('long'),
-      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,

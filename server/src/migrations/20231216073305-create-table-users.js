@@ -16,12 +16,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      filename: {
-        type: Sequelize.STRING,
-      },
-      filedata: {
-        type: Sequelize.BLOB('long'),
-      },
       username: {
         type: Sequelize.STRING,
         allowNull: false,

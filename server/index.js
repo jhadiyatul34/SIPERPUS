@@ -1,4 +1,4 @@
-// server
+// server.js
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -15,13 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 // Middleware
 server.use(logger('dev'));
-
-// frontend supaya bisa mengirimkan request dan cookie beserta credentialsnya
-server.use(cors({
-  credentials: true,
-  origin: 'http://localhost:3000'
-}));
-
+server.use(cors());
 server.use(cookieParser());
 
 // Konfigurasi parser

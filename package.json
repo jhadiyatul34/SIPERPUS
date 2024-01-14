@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-modal": "^3.16.1"
-  },
-  "devDependencies": {
-    "daisyui": "^4.6.0"
-  }
-}
