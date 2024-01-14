@@ -1,43 +1,42 @@
-"use strict";
+'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up (queryInterface, Sequelize) {
     /**
      * Add altering commands here.
      *
      * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     * await queryInterface.createTable('books', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('Users', {
-      id: {
+    await queryInterface.createTable('Books', {
+      isbn: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
-      filename: {
-        type: Sequelize.STRING,
-      },
-      filedata: {
-        type: Sequelize.BLOB('long'),
-      },
-      username: {
+      judul: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
       },
-      password: {
+      penulis: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      name: {
+      penerbit: {
         type: Sequelize.STRING,
+        allowNull: false
       },
-      role: {
-        type: Sequelize.ENUM,
-        values: ['operator','admin'],
-        defaultValue: 'operator',
+      tahun: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      kategori: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      no_rak: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       createdAt: {
@@ -53,12 +52,12 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down (queryInterface, Sequelize) {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-  },
+  }
 };
